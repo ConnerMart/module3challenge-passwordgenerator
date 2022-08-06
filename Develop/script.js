@@ -87,11 +87,6 @@ var specialChar = [
   "|",
   "~",
 ];
-// converting the character arrays into strings without spaces
-lowerString = lowerChar.join("");
-upperString = upperChar.join("");
-numericString = numericChar.join("");
-specialString = specialChar.join("");
 
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
@@ -152,15 +147,24 @@ function getChoices() {
       }
     }
   }
+  function generatePassword() {
+    var pool = [];
+    if (lowerChoice) {
+      pool = pool.concat(lowerChar);
+    }
+    if (upperChoice) {
+      pool = pool.concat(upperChar);
+    }
+    if (numericChoice) {
+      pool = pool.concat(numericChar);
+    }
+    if (specialChoice) {
+      pool = pool.concat(specialChar);
+    }
+    console.log(pool);
+  }
 }
 
-function generatePassword() {
-  console.log("hi");
-}
-
-// turn character arrays into strings
-//
-// add each string to a character pool IF the user says yes to that character type
 //
 // randomize character pool
 //
