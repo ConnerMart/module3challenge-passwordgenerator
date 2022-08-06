@@ -88,6 +88,16 @@ var specialChar = [
   "~",
 ];
 
+// shuffle function found/paraphrased from geeksforgeeks.org
+function random(x) {
+  for (var i = x.length - 1; i > 0; i--) {
+    var n = Math.floor(Math.random() * (i + 1));
+    var temp = x[i];
+    x[i] = x[n];
+    x[n] = temp;
+  }
+}
+
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
 // Add event listener to generate button
@@ -161,6 +171,10 @@ function getChoices() {
     if (specialChoice) {
       pool = pool.concat(specialChar);
     }
+    // we now have a pool of characters that the user wants included
+    // the pool needs to be randomized
+    console.log(pool);
+    random(pool);
     console.log(pool);
   }
 }
