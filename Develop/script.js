@@ -1,7 +1,6 @@
 // arrays of valid characters
-var lowerCaseChar = [];
-var upperCaseChar = [];
-var numericChar = [];
+var lowerChar = [];
+var upperChar = [];
 var specialChar = [];
 
 // Assignment Code
@@ -18,7 +17,7 @@ function writePassword() {
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
 
-function getUserChoice() {
+function getLengthChoice() {
   var lengthChoice = parseInt(
     prompt(
       "How many characters do you want your password to be?" +
@@ -32,17 +31,42 @@ function getUserChoice() {
     alert("Password must be at least 8 characters.");
   } else if (lengthChoice > 128) {
     alert("Password must be no more than 128 characters.");
-  } else alert("cool");
+  } else getLowerChoice();
 }
 
-getUserChoice();
+function getLowerChoice() {
+  var lowerChoice = confirm(
+    "Do you want your password to include lowercase characters?"
+  );
+  if (lowerChoice === true || lowerChoice === false) {
+    getUpperChoice();
+  }
+}
+
+function getUpperChoice() {
+  var upperChoice = confirm(
+    "Do you want your password to include uppercase characters?"
+  );
+  if (upperChoice === true || upperChoice === false) {
+    getSpecialChoice();
+  }
+}
+
+function getSpecialChoice() {
+  var specialChoice = confirm(
+    "Do you want your password to include special characters?"
+  );
+  if (specialChoice === true || specialChoice === false) {
+    console.log("what's up");
+  }
+}
+
+getLengthChoice();
 
 //
 //
 // write getUserChoices() function
-//    -prompt user to enter length
-//        -input has to be a number
-//        -input has to be at least 8 and no more than 128
+//    DONE-prompt user to enter length
 //    -prompt user to confirm lowercase
 //    -prompt user to confirm uppercase
 //    -prompt user to confirm numeric
