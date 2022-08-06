@@ -1,6 +1,7 @@
 // arrays of valid characters
 var lowerChar = [];
 var upperChar = [];
+var numericChar = [];
 var specialChar = [];
 
 // Assignment Code
@@ -48,6 +49,15 @@ function getUpperChoice() {
     "Do you want your password to include uppercase characters?"
   );
   if (upperChoice === true || upperChoice === false) {
+    getNumericChoice();
+  }
+}
+
+function getNumericChoice() {
+  var numericChoice = confirm(
+    "Do you want your password to include numeric characters?"
+  );
+  if (numericChoice === true || numericChoice === false) {
     getSpecialChoice();
   }
 }
@@ -56,21 +66,23 @@ function getSpecialChoice() {
   var specialChoice = confirm(
     "Do you want your password to include special characters?"
   );
-  if (specialChoice === true || specialChoice === false) {
-    console.log("what's up");
+  if (lowerChoice || upperChoice || numericChoice || specialChoice) {
+    console.log("Valid input.");
+  } else {
+    console.log("Invalid input.");
   }
 }
 
+lowerChoice = false;
+upperChoice = false;
+numericChoice = false;
+specialChoice = false;
 getLengthChoice();
 
 //
 //
 // write getUserChoices() function
-//    DONE-prompt user to enter length
-//    -prompt user to confirm lowercase
-//    -prompt user to confirm uppercase
-//    -prompt user to confirm numeric
-//    -prompt user to confirm special characters
+//
 //        -at least one character type must be confirmed
 // write generatePassword() function
 //    -generate password based on user inputs
