@@ -88,7 +88,7 @@ var specialChar = [
   "~",
 ];
 
-// shuffle function found/paraphrased from geeksforgeeks.org
+// shuffle function found/paraphrased from https://www.geeksforgeeks.org/how-to-shuffle-an-array-using-javascript/
 function random(x) {
   for (var i = x.length - 1; i > 0; i--) {
     var n = Math.floor(Math.random() * (i + 1));
@@ -172,17 +172,17 @@ function getChoices() {
       pool = pool.concat(specialChar);
     }
     // we now have a pool of characters that the user wants included
-    // the pool needs to be randomized
-    console.log(pool);
+    // we use the random() function to randomly shuffle the pool
     random(pool);
-    console.log(pool);
+    slicedPool = pool.slice(0, lengthChoice);
+    password = slicedPool;
   }
 }
-
 //
-// randomize character pool
 //
-// slice off string with number of characters determined by user input
+//
+//
+// slice off string with number of characters determined by lengthChoice variable
 //
 // assign new string as value of password variable
 //
