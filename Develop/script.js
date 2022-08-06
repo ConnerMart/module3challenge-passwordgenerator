@@ -55,7 +55,7 @@ var upperChar = [
   "Y",
   "Z",
 ];
-var numericChar = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+var numericChar = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 var specialChar = [
   "!",
   "#",
@@ -87,9 +87,16 @@ var specialChar = [
   "|",
   "~",
 ];
+// converting the character arrays into strings without spaces
+lowerString = lowerChar.join("");
+upperString = upperChar.join("");
+numericString = numericChar.join("");
+specialString = specialChar.join("");
 
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
+// Add event listener to generate button
+generateBtn.addEventListener("click", writePassword);
 
 // Write password to the #password input
 function writePassword() {
@@ -98,9 +105,6 @@ function writePassword() {
   var passwordText = document.querySelector("#password");
   passwordText.value = password;
 }
-
-// Add event listener to generate button
-generateBtn.addEventListener("click", writePassword);
 
 function getChoices() {
   var lengthChoice = parseInt(
@@ -112,6 +116,7 @@ function getChoices() {
   );
   if (Number.isNaN(lengthChoice)) {
     alert("Password length must be a number.");
+    getChoices();
   } else if (lengthChoice < 8) {
     alert("Password must be at least 8 characters.");
     getChoices();
@@ -124,7 +129,7 @@ function getChoices() {
     );
   if (lowerChoice === true || lowerChoice === false) {
     var upperChoice = confirm(
-      "Do you want your password to include uppercase latters?"
+      "Do you want your password to include uppercase letters?"
     );
   } else if (upperChoice === true || upperChoice === false);
   {
@@ -137,7 +142,7 @@ function getChoices() {
       );
     }
     if (lowerChoice || upperChoice || numericChoice || specialChoice) {
-      var password = generatePassword();
+      generatePassword();
     } else {
       var invalidInput = alert(
         "Password must include at least one of the following: lowercase letters, uppercase letters, numbers, special characters."
@@ -149,4 +154,20 @@ function getChoices() {
   }
 }
 
-function generatePassword() {}
+function generatePassword() {
+  console.log("hi");
+}
+
+// turn character arrays into strings
+//
+// add each string to a character pool IF the user says yes to that character type
+//
+// randomize character pool
+//
+// slice off string with number of characters determined by user input
+//
+// assign new string as value of password variable
+//
+//
+//
+// generatePassword() ultimately needs to assign a value to the password variable (last line of writePassword() function)
