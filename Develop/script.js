@@ -1,5 +1,5 @@
 // arrays of possible characters
-var lowerChar = [
+var lowerCharSingle = [
   "a",
   "b",
   "c",
@@ -27,7 +27,7 @@ var lowerChar = [
   "y",
   "z",
 ];
-var upperChar = [
+var upperCharSingle = [
   "A",
   "B",
   "C",
@@ -55,8 +55,8 @@ var upperChar = [
   "Y",
   "Z",
 ];
-var numericChar = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
-var specialChar = [
+var numericCharSingle = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+var specialCharSingle = [
   "!",
   "#",
   "$",
@@ -87,6 +87,39 @@ var specialChar = [
   "|",
   "~",
 ];
+// arrays of possible characters repeated so that each one contains at least 128 characters on its own - I am certain there's a more elegant way to do this but this is what I came up with
+var lowerChar = lowerCharSingle.concat(
+  lowerCharSingle,
+  lowerCharSingle,
+  lowerCharSingle,
+  lowerCharSingle
+); // 130 characters
+var upperChar = upperCharSingle.concat(
+  upperCharSingle,
+  upperCharSingle,
+  upperCharSingle,
+  upperCharSingle
+); // 130 characters
+var numericChar = numericCharSingle.concat(
+  numericCharSingle,
+  numericCharSingle,
+  numericCharSingle,
+  numericCharSingle,
+  numericCharSingle,
+  numericCharSingle,
+  numericCharSingle,
+  numericCharSingle,
+  numericCharSingle,
+  numericCharSingle,
+  numericCharSingle,
+  numericCharSingle
+); // 130 characters
+var specialChar = specialCharSingle.concat(
+  specialCharSingle,
+  specialCharSingle,
+  specialCharSingle,
+  specialCharSingle
+); // 145 characters
 
 // shuffle function found/paraphrased from https://www.geeksforgeeks.org/how-to-shuffle-an-array-using-javascript/
 function random(x) {
@@ -175,7 +208,7 @@ function getChoices() {
   }
   function generatePassword() {
     // creates a pool of characters which starts off empty
-    // adds character arrays based on user choices
+    // adds character arrays defined above, based on user choices
     var pool = [];
     if (lowerChoice) {
       pool = pool.concat(lowerChar);
@@ -197,6 +230,3 @@ function getChoices() {
     password = slicedPool;
   }
 }
-
-// TODO: arrays need to be repeating?
-// currently if a user chooses a length of 100 but only says yes to numeric values, their password is a maximum 10 characters, 26 for letters, etc.
