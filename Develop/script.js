@@ -9,7 +9,7 @@ var generateBtn = document.querySelector("#generate");
 
 // Write password to the #password input
 function writePassword() {
-  var password = generatePassword();
+  getChoices();
 
   var passwordText = document.querySelector("#password");
   passwordText.value = password;
@@ -18,7 +18,7 @@ function writePassword() {
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
 
-function getLengthChoice() {
+function getChoices() {
   var lengthChoice = parseInt(
     prompt(
       "How many characters do you want your password to be?" +
@@ -30,60 +30,43 @@ function getLengthChoice() {
     alert("Password length must be a number.");
   } else if (lengthChoice < 8) {
     alert("Password must be at least 8 characters.");
+    getChoices();
   } else if (lengthChoice > 128) {
     alert("Password must be no more than 128 characters.");
-  } else getLowerChoice();
-}
-
-function getLowerChoice() {
-  var lowerChoice = confirm(
-    "Do you want your password to include lowercase characters?"
-  );
+    getChoices();
+  } else
+    var lowerChoice = confirm(
+      "Do you want your password to include lowercase letters?"
+    );
   if (lowerChoice === true || lowerChoice === false) {
-    getUpperChoice();
+    var upperChoice = confirm(
+      "Do you want your password to include uppercase latters?"
+    );
+  } else if (upperChoice === true || upperChoice === false);
+  {
+    var numericChoice = confirm(
+      "Do you want your password to include numeric characters?"
+    );
+    if (numericChoice === true || numericChoice === false) {
+      var specialChoice = confirm(
+        "Do you want your password to include special characters?"
+      );
+    }
+    if (lowerChoice || upperChoice || numericChoice || specialChoice) {
+      var password = generatePassword();
+    } else {
+      var invalidInput = alert(
+        "Password must include at least one of the following: lowercase letters, uppercase letters, numbers, special characters."
+      );
+      if (invalidInput || !invalidInput) {
+        getChoices();
+      }
+    }
   }
 }
-
-function getUpperChoice() {
-  var upperChoice = confirm(
-    "Do you want your password to include uppercase characters?"
-  );
-  if (upperChoice === true || upperChoice === false) {
-    getNumericChoice();
-  }
-}
-
-function getNumericChoice() {
-  var numericChoice = confirm(
-    "Do you want your password to include numeric characters?"
-  );
-  if (numericChoice === true || numericChoice === false) {
-    getSpecialChoice();
-  }
-}
-
-function getSpecialChoice() {
-  var specialChoice = confirm(
-    "Do you want your password to include special characters?"
-  );
-  if (lowerChoice || upperChoice || numericChoice || specialChoice) {
-    console.log("Valid input.");
-  } else {
-    console.log("Invalid input.");
-  }
-}
-
-lowerChoice = false;
-upperChoice = false;
-numericChoice = false;
-specialChoice = false;
-getLengthChoice();
 
 //
 //
-// write getUserChoices() function
-//
-//        -at least one character type must be confirmed
 // write generatePassword() function
 //    -generate password based on user inputs
 
